@@ -119,8 +119,46 @@ function buildCharts(sample) {
     // 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot("bubble", bubbleData, bubbleLayout);
 
-  
-    
+    var freqValues = data.WFREQ;
+    // 1. Create the trace for the bubble chart.
+    var bubbleData = [{
+      type: "indicator",
+      mode: "gauge+number",
+      value: freqValues,
+      title: { text: "Belly Button Washing Frequency</b> <br> Scrubs per Week", font: { size: 18 } },
+      gauge: {
+          axis: { range: [null, 9], tickwidth: 1, tickcolor: "black" }, // Max value is 9
+          bar: { color: "black" }, // Color of the bar (black) that indicates the washing frequency value
+          borderwidth: 3,
+          bordercolor: "black",
+          // Set the colors for the different ranges on the gauge
+          steps: [
+              { range: [0, 1], color: "lightcoral" },
+              { range: [1, 2], color: "lightpink" },
+              { range: [2, 3], color: "yellowgreen" },
+              { range: [3, 4], color: "lightgreen" },
+              { range: [4, 5], color: "green" },
+              { range: [5, 6], color: "lightblue" },
+              { range: [6, 7], color: "cyan" },
+              { range: [7, 8], color: "royalblue" },
+              { range: [8, 9], color: "blue" }
+          ], //ends the steps: section
+      } //ends the gauge: section
+  } //ends the curly brace after var data [
+
+];
+   
+
+    // 2. Create the layout for the bubble chart.
+    var bubbleLayout = {
+      width: 500,
+            height: 500,
+            margin: { t: 15, r: 15, l: 15, b: 15 },
+            font: { color: "black", family: "Arial" }
+    };
+
+    // 3. Use Plotly to plot the data with the layout.
+    Plotly.newPlot('gauge', bubbleData, bubbleLayout); 
   });
 
   
